@@ -1,18 +1,36 @@
 #include <stdio.h>
 
-int numlen(int num) {
-    int a = (num < 0) ? -num : num;
-    return (a < 10) ? 1 : (1 + numlen(a / 10));
+static int numlen(int num) {
+    int a = num;
+    if (num < 0) {
+        a = -num;
+    }
+    if (a < 10) {
+        return 1;
+    }
+    return 1 + numlen(a / 10);
 }
 
 static float power(int base, int exp) {
-    int temp = (exp < 0) ? -exp : exp;
-    float result = (temp == 0) ? 1 : (base * power(base, temp - 1));
-    return (exp < 0) ? (1 / result) : result;
+    printf("power(%d, %d) called\n", base, exp);
+    int temp = exp;
+    if (exp < 0) {
+        temp = -exp;
+    }
+    float result = 1;
+    if (temp != 0) {
+        result = (base * power(base, temp - 1));
+    }
+    printf("result == %g\n", result);
+    if (exp < 0) {
+        return (1 / result);
+    }
+    return result;
 }
 
 #define pnumlen(num) printf(#num " len: %d\n", numlen(num))
+#define ppower(x, y) printf(#x "^" #y " == %g\n", power(x, y))
 int main(void) {
-    printf("5 ^ 3 == %.2f\n", power(5, 3));
+    ppower(7, 5);
     return 0;
 }
