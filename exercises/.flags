@@ -1,0 +1,10 @@
+
+CFLAGS=(
+    "-g"
+    "-O2"
+    "-Wall"
+    "-Wextra"
+    "-pedantic"
+    "-fsanitize=address"
+    "-fsanitize=bounds"
+)
