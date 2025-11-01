@@ -1,7 +1,7 @@
 /**
  * @file exercise-36.c
  * @author Faroch Mehri (faroch.mehri@ya.se)
- * @brief The solution of Exercise 36.
+ * @brief The starter of Exercise 36.
  * @version 0.1
  * @date 2021-03-04
  *
@@ -18,6 +18,7 @@
 #define MSB_ONE ((uint16_t)0x8000U)
 #define CRC_ERROR ((uint16_t)0xFFFFU)
 
+// Calculate the CRC
 static uint16_t get_crc15(const uint8_t *data, uint8_t size)
 {
     uint16_t remainder = CRC_ERROR;
@@ -26,44 +27,18 @@ static uint16_t get_crc15(const uint8_t *data, uint8_t size)
     {
         remainder = 0;
 
-        for (uint8_t i = 0; i < size; i++) // Interate over the elements from the first to the last element.
-        {
-            for (int8_t j = 0; j < CHAR_BIT; j++) // Iterate over the bits in data[i] from LSB to MSB
-            {
-                remainder <<= 1;                 // Shift remainder to left
-                remainder |= (data[i] >> j) & 1; // Get the jth bit of data[i] and put it in the LSB of remainder
-                if ((remainder & MSB_ONE) != 0)  // If the MSB of remainder is not zero
-                {
-                    remainder ^= POLYNOMIAL; // Xor remainder with the polynomial and store the result in remainder
-                }
-            }
-        }
+        // Complete the code
     }
 
     return remainder;
 }
 
-static uint8_t reverse_bits(uint8_t byte)
-{
-    uint8_t reversed = 0;
-
-    for (uint8_t i = 0; i < CHAR_BIT; i++)
-    {
-        reversed |= ((byte >> i) & 1) << (CHAR_BIT - 1 - i);
-    }
-
-    return reversed;
-}
-
-// This function is used to checksum the message.
-// I.e. replace the padded zeros with the CRC accroding to the requirements.
+// Replace the padded zeros with the CRC accroding to the requirements.
 static void checksum(uint8_t *data, uint8_t size, uint16_t crc)
 {
     if ((data != NULL) && (size > sizeof(crc)) && (size <= ARRAY_MAX_LEN))
     {
-        // The crc shall be reversed.
-        data[size - 2] = reverse_bits((uint8_t)(crc >> CHAR_BIT));
-        data[size - 1] = reverse_bits((uint8_t)crc);
+        // Complete the code
     }
 }
 
@@ -71,7 +46,7 @@ int main(void)
 {
     uint8_t message[14] = {'H', 'e', 'l', 'l', 'o', ' ', 'W', 'o', 'r', 'l', 'd', '!', 0, 0}; // Instead of 15 zeros, 16 zeros have been appended to the message.
                                                                                               // We can assume that the MSB of message[12], which is a zero,
-                                                                                              // is a bit of data.
+                                                                                              // is a bit of the data.
 
     uint16_t crc = get_crc15(message, sizeof(message)); // Calculate the CRC.
 
