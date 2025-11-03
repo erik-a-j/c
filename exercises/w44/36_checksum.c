@@ -69,17 +69,33 @@ static uint16_t get_crc15(const uint8_t *data, uint8_t size) {
 
     if ((data != NULL) && (size > sizeof(remainder)) && (size <= ARRAY_MAX_LEN)) {
         remainder = 0;
-
-        // Complete the code
+        for (uint8_t i = 0; i < size; i++) {
+            for (int8_t j = 0; j < CHAR_BIT; j++) {
+                remainder <<= 1;
+                remainder |= (data[i] >> j) & 1;
+                if ((remainder & MSB_ONE) != 0) {
+                    remainder ^= POLYNOMIAL;
+                }
+            }
+        }
     }
 
     return remainder;
 }
 
+static uint8_t reverse_bits(uint8_t byte) {
+    uint8_t reversed = 0;
+    for (uint8_t i = 0; i < CHAR_BIT; i++) {
+        reversed |= ((byte >> i) & 1) << (CHAR_BIT - 1 - i);
+    }
+    return reversed;
+}
+
 // Replace the padded zeros with the CRC accroding to the requirements.
 static void checksum(uint8_t *data, uint8_t size, uint16_t crc) {
     if ((data != NULL) && (size > sizeof(crc)) && (size <= ARRAY_MAX_LEN)) {
-        // Complete the code
+        data[size - 2] = reverse_bits((uint8_t)(crc >> CHAR_BIT));
+        data[size - 1] = reverse_bits((uint8_t)crc);
     }
 }
 
