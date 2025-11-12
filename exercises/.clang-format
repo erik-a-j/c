@@ -25,7 +25,7 @@ AlignTrailingComments: true
 AllowAllArgumentsOnNextLine: true
 AllowAllParametersOfDeclarationOnNextLine: true
 AllowShortEnumsOnASingleLine: true
-AllowShortBlocksOnASingleLine: Always
+AllowShortBlocksOnASingleLine: Empty
 AllowShortCaseLabelsOnASingleLine: true
 AllowShortFunctionsOnASingleLine: None
 AllowShortLambdasOnASingleLine: All
@@ -39,19 +39,20 @@ AttributeMacros:
   - __capability
 BinPackArguments: true
 BinPackParameters: true
+BreakBeforeBraces: Custom
 BraceWrapping:
   AfterCaseLabel: false
-  AfterClass: false
-  AfterControlStatement: Never
+  AfterClass: true
+  AfterControlStatement: Always
   AfterEnum: false
-  AfterFunction: false
+  AfterFunction: true
   AfterNamespace: false
   AfterObjCDeclaration: false
   AfterStruct: false
   AfterUnion: false
   AfterExternBlock: false
-  BeforeCatch: false
-  BeforeElse: false
+  BeforeCatch: true
+  BeforeElse: true
   BeforeLambdaBody: false
   BeforeWhile: false
   IndentBraces: false
@@ -61,7 +62,6 @@ BraceWrapping:
 BreakAfterReturnType: Automatic
 BreakBeforeBinaryOperators: NonAssignment
 BreakBeforeConceptDeclarations: true
-BreakBeforeBraces: Attach
 BreakBeforeInheritanceComma: false
 BreakInheritanceList: BeforeColon
 BreakBeforeTernaryOperators: true
