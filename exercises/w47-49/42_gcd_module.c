@@ -20,7 +20,7 @@ How to Find the GCF Using Euclid's Algorithm
     When R=0, the divisor, b, in the last equation is the greatest common factor, GCF.
 
 */
-#include "42_module.h"
+#include "42_gcd_module.h"
 #include <stddef.h>
 #include <stdlib.h>
 #include <string.h>

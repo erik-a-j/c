@@ -1,7 +1,7 @@
 #include <assert.h>
 #include <ctype.h>
 #include <stdio.h>
-#include "42_module.h"
+#include "42_gcd_module.h"
 
 bool charcmp(char a, char b)
 {
