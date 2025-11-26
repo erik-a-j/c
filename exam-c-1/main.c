@@ -9,7 +9,6 @@
 
 #define DB_FILE            "students.bin"
 #define NAME_LEN           32
-
 #define PRINT_STUDENTS_ALL 0
 
 typedef struct {
